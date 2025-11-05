@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Retro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
+</head>
+
+<body id="top">
+
+    <header class="header">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokebola">
+        <h1>Pokédex Retro</h1>
+    </header>
+
+    <nav class="filter-nav">
+        <div class="nav-container container">
+            <div class="filter-section" id="generation-filter-section">
+                <h3>Geração:</h3>
+                <div class="filter-buttons-container" id="generation-filter-buttons">
+                    <button class="filter-btn active" data-gen="all">Todas</button>
+                    <button class="filter-btn" data-gen="1">Gen 1</button>
+                    <button class="filter-btn" data-gen="2">Gen 2</button>
+                    <button class="filter-btn" data-gen="3">Gen 3</button>
+                </div>
+            </div>
+            <div class="filter-section" id="type-filter-section">
+                <h3>Tipo:</h3>
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" id="carousel-prev" disabled>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                        </svg>
+                    </button>
+                    <div class="carousel-viewport" id="carousel-viewport">
+                        <div class="filter-buttons-container" id="type-filter-buttons">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" id="carousel-next">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="search-container">
+            <div class="search-box">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+                <input type="text" id="search-input" placeholder="Buscar Pokémon...">
+            </div>
+        </div>
+        <div id="character-gallery" class="character-gallery"></div>
+        <div id="loading" class="show">Carregando Pokémon...</div>
+        <div id="no-results">Nenhum resultado encontrado.</div>
+        <div class="load-more-container">
+            <button id="load-more-btn">Carregar Mais</button>
+        </div>
+    </main>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">
+                <svg viewBox="0 0 24 24" fill="#333">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                    </path>
+                </svg>
+            </button>
+            <div id="modal-body" class="modal-body">
+                <div id="modal-image-container">
+                    <img id="modal-image" src="" alt="Imagem do Pokémon">
+                </div>
+                <div id="modal-info">
+                    <h2 id="modal-name"></h2>
+                    <p id="modal-id"></p>
+                    <div id="modal-types" class="modal-info-box"></div>
+                    <p id="modal-description"></p>
+                    <h3 class="modal-subtitle">Detalhes</h3>
+                    <div id="modal-physical-details" class="modal-info-box"></div>
+                    <h3 class="modal-subtitle">Habilidades</h3>
+                    <div id="modal-abilities" class="modal-info-box"></div>
+                    <h3 class="modal-subtitle">Status Base</h3>
+                    <div id="modal-stats" class="stats-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#top" id="back-to-top">
+        <svg viewBox="0 0 24 24" fill="white">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path>
+        </svg>
+    </a>
+
+    <footer class="footer">
+        <p>Desenvolvido com a PokeAPI. © 2025</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
